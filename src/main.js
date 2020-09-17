@@ -3,6 +3,7 @@ import App from './App.vue'
 import router from './router'
 import store from './store'
 Vue.config.productionTip = false
+import './components/v-button.js'
 
 new Vue({
   router,

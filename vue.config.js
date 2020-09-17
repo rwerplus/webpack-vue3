@@ -30,6 +30,7 @@ module.exports = {
     // 代理转发配置，用于调试环境
     disableHostCheck: true
   },
+  runtimeCompiler: true,
   publicPath: process.env.NODE_ENV === 'production' ? './' : '/',
   // 输出文件目录
   outputDir: 'dist',
