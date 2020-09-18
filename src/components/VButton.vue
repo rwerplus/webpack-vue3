@@ -1,6 +1,5 @@
 <template>
-  <div>
-  </div>
+  <button class='v-button'>123</button>
 </template>
 
 <script>
@@ -11,3 +10,6 @@
     }
   }
 </script>
+<style lang="scss">
+@import './base.scss'
+</style>
