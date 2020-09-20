@@ -1,5 +1,5 @@
 @import '../base.scss';
-
+@import "../style/keyFrame";
 .v-button {
   font-size: var(--font-size);
   height: var(--button-height);
@@ -31,5 +31,8 @@
   &:active{
     background-color: var(--button-active-bg);
     box-shadow: 0 2px 8px 0 rgba(0,0,0,.1);
+  }
+  .loading {
+    animation: spin 1.2s infinite linear;
   }
 }
