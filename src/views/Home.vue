@@ -9,6 +9,7 @@
     <el-divider/>
     <c-multiple-select :options="options" @ok="handleOk" :selected="['h_1','h_2']" elementLabel="q" elementValue="sa"/>
     <c-single-select :options="options" elementLabel="q" selected="深色背景颜色" elementValue="sa"></c-single-select>
+    <c-process/>
   </div>
 </template>
 
@@ -16,10 +17,12 @@
   // @ is an alias to /src
   import HelloWorld from '@/components/HelloWorld.vue'
   import CSingleSelect from '../components/common/CSingleSelect'
+  import CProcess from '../components/common/CProcess'
 
   export default {
     name: 'Home',
     components: {
+      CProcess,
       CSingleSelect,
       HelloWorld,
     },
