@@ -7,17 +7,20 @@
     <v-button icon='loading' icon-position='right'>组件</v-button>
     <v-button icon='setup'>组件</v-button>
     <el-divider/>
-    <c-select :options="options" @ok="handleOk" :selected="['h_1','h_2']" elementLabel="q" elementValue="sa"/>
+    <c-multiple-select :options="options" @ok="handleOk" :selected="['h_1','h_2']" elementLabel="q" elementValue="sa"/>
+    <c-single-select :options="options" elementLabel="q" selected="深色背景颜色" elementValue="sa"></c-single-select>
   </div>
 </template>
 
 <script>
   // @ is an alias to /src
   import HelloWorld from '@/components/HelloWorld.vue'
+  import CSingleSelect from '../components/common/CSingleSelect'
 
   export default {
     name: 'Home',
     components: {
+      CSingleSelect,
       HelloWorld,
     },
     methods: {

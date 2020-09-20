@@ -1,29 +1,23 @@
 <template>
   <section class="c-select-main" :style="cDropDownStyle">
     <el-dropdown trigger="click"
-                 @visible-change="visibleChange"
                  ref="dropdown"
+                 @command="handleCommand"
                  style="width: 100%"
                  placement="bottom-start"
-                 :hide-on-click="false">
+                 :hide-on-click="true">
       <div class="c-select-content el-dropdown-link">
         <p class="c-title"> {{title}}</p>
         <p class="c-content">
-          <i class="el-icon-arrow-left"></i>
-          {{selectedDeep.length}}个选中
-          <i class="el-icon-arrow-right"></i>
+          {{value}}
         </p>
         <span class="el-icon-arrow-down c-icon"></span>
       </div>
       <el-dropdown-menu slot="dropdown" :style="cDropDownStyle">
-        <el-dropdown-item style="min-height: 100px;max-height: 200px;overflow: auto">
-          <CCheckbox :options="options"/>
-        </el-dropdown-item>
-        <el-dropdown-item>
-          <div class="c-footer">
-            <c-button @click="handleCancel">取消</c-button>
-            <c-button @click="handleOk">确定</c-button>
-          </div>
+        <el-dropdown-item v-for="(item,index) in options" :key="index"
+                          :class="[{'isSelected': value===item[elementLabel]}]"
+                          :command="item">
+          {{item[elementLabel]}}
         </el-dropdown-item>
       </el-dropdown-menu>
     </el-dropdown>
@@ -31,25 +25,22 @@
 </template>
 
 <script>
-  import CCheckbox from './CCheckbox'
-  import CButton from './CButton'
   export default {
-    name: 'CSelect',
-    components: {CCheckbox,CButton},
-    provide() {
-      return {
-        isSelected:this
-      }
-    },
+    name: 'CSingleSelect',
     data () {
       return {
-        hidePopup: true,
         cDropDownStyle: {
           outline: 'none',
           width: this.width + 'px'
         },
-        selectedDeep: JSON.parse(JSON.stringify(this.selected)),
-        selectedUpdate:JSON.parse(JSON.stringify(this.selected))
+        value: this.selected
+      }
+    },
+    methods: {
+      handleCommand(command) {
+        console.log(command)
+        this.value = command[this.elementLabel]
+        this.$emit('change',command)
       }
     },
     props: {
@@ -66,7 +57,8 @@
         required: true
       },
       selected: {
-        type: Array,
+        type: [String, Number],
+        default: '请选择',
         required: false
       },
       elementLabel: {
@@ -78,54 +70,31 @@
         default: ''
       }
     },
-    methods: {
-      visibleChange(value) {
-        if (!value) {
-          const leg = this.selectedDeep.toString() === this.selectedUpdate.toString()
-          if (!leg) {
-            this.selectedDeep = this.selectedUpdate
-          }
-        }
-      },
-      closeDropMenu() {
-        this.$refs.dropdown.hide()
-      },
-      handleClick(e) {
-        this.hidePopup=true
-        console.log(e)
-      },
-      handleCancel() {
-        this.selectedDeep = this.selectedUpdate
-        this.closeDropMenu()
-      },
-      handleOk() {
-        this.resetSelected()
-        this.$emit('ok',this.selectedDeep)
-        this.closeDropMenu()
-      },
-      resetSelected() {
-        this.selectedUpdate = this.selectedDeep
-      }
-    }
   }
 </script>
 
 <style lang="scss">
   .el-popper[x-placement^=bottom] {
     border: none;
-    margin-top: 5px!important;
+    margin-top: 5px !important;
+
     .popper__arrow {
       display: none;
     }
+
     .c-footer {
       padding-top: 1em;
       text-align: right;
+
       .v-button:first-child {
         margin-right: 1em;
       }
     }
   }
-
+  .isSelected {
+    background-color: #2c3e50;
+    color: #00ffff;
+  }
   .c-select-main {
     overflow: hidden;
     margin: 0 auto;
