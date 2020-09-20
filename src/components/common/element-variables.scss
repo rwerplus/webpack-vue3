@@ -1,0 +1,17 @@
+/* 改变主题色变量 */
+$--color-primary: teal;
+$--dropdown-menuItem-hover-color: red;
+/* 改变 icon 字体路径变量，必需 */
+$--font-path: '~element-ui/lib/theme-chalk/fonts';
+$--select-option-selected-hover:blue;
+$--select-dropdown-background:yellow;
+$--popover-background-color:skyblue;
+//drop下拉菜单hover背景色
+.el-dropdown-menu__item:not(.is-disabled):hover, .el-dropdown-menu__item:focus {
+  background-color: transparent!important;
+  color: #00FFFF;
+}
+@import "~element-ui/packages/theme-chalk/src/index";
+:focus {
+  outline:0
+}

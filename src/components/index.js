@@ -1,7 +1,9 @@
-import VButton from './VButton.vue'
+import VButton from './button/VButton.vue'
 import Vue from 'vue'
+import CSelect from './common/CSelect'
 const components = [
-  VButton
+  VButton,
+  CSelect
 ]
 components.forEach(component => {
   Vue.component(component.name, component);

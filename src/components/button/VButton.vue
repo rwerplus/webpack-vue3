@@ -16,5 +16,5 @@
   }
 </script>
 <style lang="scss">
-@import './v-button'
+@import './v-button';
 </style>
