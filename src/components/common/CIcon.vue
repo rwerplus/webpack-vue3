@@ -6,7 +6,7 @@
 
 <script>
   export default {
-    name: 'VIcon',
+    name: 'CIcon',
     props: ['name']
   }
 </script>

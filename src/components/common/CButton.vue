@@ -1,5 +1,5 @@
 <template>
-  <button class='v-button' @click.stop="()=>$emit('click')">
+  <button class='c-button' @click.stop="()=>$emit('click')">
     <div class="content">
       <slot/>
     </div>
@@ -12,10 +12,10 @@
   }
 </script>
 
-<style lang="scss" scoped>
+<style lang="scss">
   @import '../base.scss';
 
-  .v-button {
+  .c-button {
     font-size: 10px;
     height: 24px;
     padding: 0 1em;
