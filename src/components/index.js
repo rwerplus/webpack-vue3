@@ -4,11 +4,13 @@ import CSelect from './common/CMultipleSelect'
 import CSingleSelect from './common/CSingleSelect'
 import CIcon from './common/CIcon'
 import CButtonGroup from './common/CButtonGroup'
+import CTimeSelect from './common/CTimeSelect'
 const components = [
   VButton,
   CSelect,
   CSingleSelect,
   CIcon,
+  CTimeSelect,
   CButtonGroup
 ]
 const component = {

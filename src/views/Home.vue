@@ -12,7 +12,9 @@
       <v-button>前进</v-button>
       <v-button icon='setup' :loading="true" icon-position="right">组件</v-button>
     </c-button-group>
-<!--    <c-multiple-select :options="options" @ok="handleOk" :selected="['h_1','h_2']" elementLabel="q" elementValue="sa"/>-->
+    <el-divider/>
+    <c-time-select/>
+    <!--    <c-multiple-select :options="options" @ok="handleOk" :selected="['h_1','h_2']" elementLabel="q" elementValue="sa"/>-->
 <!--    <c-single-select :options="options" elementLabel="q" selected="深色背景颜色" elementValue="sa"></c-single-select>-->
 <!--    <c-process/>-->
   </div>
