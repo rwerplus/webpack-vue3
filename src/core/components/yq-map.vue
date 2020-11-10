@@ -1,7 +1,11 @@
 <template>
-  <div ref="CMap" class="CMap"></div>
+  <div>
+    <div ref="CMap" class="CMap"></div>
+    <div id="popup" class="popup" ref="popup" >{{coordinate}}</div>
+    <div class="marker" ref="marker">{{marker}}</div>
+  </div>
 </template>
-<script lang="js">
+<script>
   import { Map, View } from "ol";
   import TileLayer from "ol/layer/Tile";
   import TileImage from "ol/source/TileImage";
@@ -14,8 +18,18 @@
   import TileArcGISRest from 'ol/source/TileArcGISRest'
   import * as olInteraction from 'ol/interaction';
   import {defaults} from 'ol/interaction';
+  import Overlay from 'ol/Overlay';
+  import {fromLonLat} from 'ol/proj';
+  import mapconfig from './mapconfig'
+
   export default {
     name: 'YQMap',
+    data() {
+      return {
+        coordinate: '',
+        marker: 'markermarkermarkermarker'
+      }
+    },
     mounted () {
       const map = this.$refs.CMap
       //百度地图
@@ -50,10 +64,45 @@
       });
 
       var baiduMapLayer = new TileLayer({
+        title : "百度地图卫星服务",
         preload: Infinity,
         source: baidu_source
       });
+      /**
+       * 创建一个Overlay叠加层对象用作显示弹窗
+       * @type {Overlay}
+       */
+      const pop = this.$refs.popup
+      this.popupOverlay = new Overlay({
+        element: pop,
+        autoPan: true,
+        autoPanAnimation: {
+          duration: 250
+        }
+      });
 
+      /**
+       *代表位置的标记
+       * @type {marker}
+       */
+        const pos = fromLonLat([118.798422,32.004679])
+      const marker = this.$refs.marker
+      console.log(pos)
+      const markerLayer= new Overlay({
+        position: pos,
+        positioning: 'center-center',
+        element: marker,
+        stopEvent:false
+      })
+      /**
+       * 文字注释
+       * @type {Overlay}
+       */
+      /*      const posName = new  Overlay({
+              position: pos,
+              element: marker,
+
+            })*/
       this.map = new Map({
         target: map,
         interactions: defaults({
@@ -62,13 +111,16 @@
         layers: [
           baiduMapLayer
         ],
-        // overlays: [overlay],
+        overlays: [this.popupOverlay],
         view: new View({
           projection: "EPSG:3857",    //使用这个坐标系
           center: [118.798422,32.004679],  //深圳
           zoom: 3
         })
       });
+      this.map.addOverlay(markerLayer)
+
+      // this.map.addOverlay(posName)
       this.map.on('singleclick',(e) => {
         this.handleClick(e)
       })
@@ -80,6 +132,10 @@
       handleClick(event) {
         const coordinate = event.coordinate
         console.log(coordinate)
+        // xy坐标转换为经纬度坐标
+        this.coordinate = coordinate
+        this.popupOverlay.setPosition(coordinate);
+        this.map.addOverlay(this.popupOverlay);
         const hdms = olCoordinate.toStringHDMS(olProj.toLonLat(coordinate))
         console.log(hdms)
       }
@@ -91,5 +147,24 @@
     width: 100%;
     height: 100vh;
     tab-index: 2;
+  }
+  .popup {
+    width: 400px;
+    height: 80px;
+    border: 1px solid #9c9c9c;
+    background-color: #2c3e50;
+    text-align: center;
+    line-height: 80px;
+    border-radius: 20px;
+    color: #FFFFFF;
+    font-size: 14px;
+    font-family: Menlo;
+  }
+  .marker {
+    width: 20px;
+    height: 20px;
+    border-radius: 10px;
+    border: 1px solid deeppink;
+    background-color: #2e6da4;
   }
 </style>
