@@ -1,2 +1,2 @@
 import './iconfont'
-import './element'
+// import './element'

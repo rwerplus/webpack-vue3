@@ -10,10 +10,9 @@
     mounted () {
       for (let node of this.$el.children) {
         if (node.nodeName.toLowerCase() !== 'button') {
-          console.warn('c-button-group的子元素应该全是c-button,但是你使用的是',node.nodeName)
+          console.warn('c-button-group的子元素应该全是c-button,但是你使用的是:',node.nodeName)
         }
       }
-      console.log(this.$children)
     }
   }
 </script>

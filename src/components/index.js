@@ -5,6 +5,7 @@ import CSingleSelect from './common/CSingleSelect'
 import CIcon from './common/CIcon'
 import CButtonGroup from './common/CButtonGroup'
 import CTimeSelect from './common/CTimeSelect'
+import '../theme/base.scss'
 const components = [
   VButton,
   CSelect,

@@ -2,18 +2,18 @@
   <div class="home" style="margin: 0 auto">
     组件测试灰度版本@beta1.0.0
     <br/>
+
     <v-button icon='pinglun' icon-position='right'>组件</v-button>
     <v-button icon='arrow-left'>组件</v-button>
     <v-button icon='setup' icon-position='right' :loading="loading" @click="() => loading=!loading">组件</v-button>
     <v-button icon='setup' :loading="true" icon-position="right">组件</v-button>
-    <el-divider/>
+    <hr/>
     <c-button-group>
       <v-button icon='setup' :loading="true" icon-position="right">组件</v-button>
       <v-button>前进</v-button>
       <v-button icon='setup' :loading="true" icon-position="right">组件</v-button>
     </c-button-group>
-    <el-divider/>
-    <c-time-select/>
+    <hr/>
     <!--    <c-multiple-select :options="options" @ok="handleOk" :selected="['h_1','h_2']" elementLabel="q" elementValue="sa"/>-->
 <!--    <c-single-select :options="options" elementLabel="q" selected="深色背景颜色" elementValue="sa"></c-single-select>-->
 <!--    <c-process/>-->
@@ -22,7 +22,6 @@
 
 <script>
 import HelloWorld from '@/components/HelloWorld.vue'
-
 export default {
   name: 'Home',
   components: {

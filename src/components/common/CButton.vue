@@ -13,7 +13,6 @@
 </script>
 
 <style lang="scss">
-  @import '../base.scss';
 
   .c-button {
     font-size: 10px;
