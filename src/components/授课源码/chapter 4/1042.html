@@ -1,0 +1,113 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+  <title></title>
+  <link rel="stylesheet" href="../include/ol.css" type="text/css" />
+  <script src="../include/ol.js"></script>
+</head>
+
+<body>
+  <form class="form-inline">
+    <span id="status">没有要素被点中</span>
+    <br />
+    <label>选择要素的点击容差</label>
+    <select id="hitTolerance" class="form-control">
+      <option value="0" selected>0 像素</option>
+      <option value="5">5 像素</option>
+      <option value="10">10 像素</option>
+    </select>
+    <br />
+    区域: <canvas id="circle" style="vertical-align: middle" ></canvas>
+  </form>
+
+  <div id="map" class="map"></div>
+
+  <script>
+    var raster = new ol.layer.Tile({
+      source: new ol.source.OSM()
+    });
+
+    var style = new ol.style.Style({
+      stroke: new ol.style.Stroke({
+        color: "black",
+        width: 1
+      })
+    });
+
+    var feature = new ol.Feature(
+      new ol.geom.LineString([[-4000000, 0], [4000000, 0]])
+    );
+
+    var vector = new ol.layer.Vector({
+      source: new ol.source.Vector({
+        features: [feature]
+      }),
+      style: style
+    });
+
+    var map = new ol.Map({
+      layers: [raster, vector],
+      target: "map",
+      view: new ol.View({
+        center: [0, 0],
+        zoom: 2
+      })
+    });
+
+    var hitTolerance;
+
+    var statusElement = document.getElementById("status");
+
+    map.on("singleclick", function (e) {
+      var hit = false;
+      map.forEachFeatureAtPixel(
+        e.pixel,
+        function () {
+          hit = true;
+        },
+        {
+          hitTolerance: hitTolerance
+        }
+      );
+      if (hit) {
+        style.getStroke().setColor("green");
+        statusElement.innerHTML = " 一个要素被选中了!";
+      } else {
+        style.getStroke().setColor("black");
+        statusElement.innerHTML = " 没有要素被选中.";
+      }
+      feature.changed();
+    });
+
+    var selectHitToleranceElement = document.getElementById("hitTolerance");
+    var circleCanvas = document.getElementById("circle");
+
+    var changeHitTolerance = function () {
+      hitTolerance = parseInt(selectHitToleranceElement.value, 10);
+
+      var size = 2 * hitTolerance + 2;
+      circleCanvas.width = size;
+      circleCanvas.height = size;
+      var ctx = circleCanvas.getContext("2d");
+      ctx.clearRect(0, 0, size, size);
+      ctx.beginPath();
+      ctx.arc(
+        hitTolerance + 1,
+        hitTolerance + 1,
+        hitTolerance + 0.5,
+        0,
+        2 * Math.PI
+      );
+      ctx.fill();
+      ctx.stroke();
+    };
+
+    selectHitToleranceElement.onchange = changeHitTolerance;
+    changeHitTolerance();
+
+
+  </script>
+</body>
+
+</html>

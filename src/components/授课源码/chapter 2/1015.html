@@ -1,0 +1,57 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+  <title>比例尺控件的使用
+  </title>
+  <link rel="stylesheet" href="../include/ol.css" type="text/css">
+  <script src="../include/ol.js"></script>
+
+</head>
+<style>
+
+</style>
+
+<body>
+  <select id="units">
+    <option value="degrees">度</option>
+    <option value="imperial">英制英尺</option>
+    <option value="us">美制英尺</option>
+    <option value="nautical">海里</option>
+    <option value="metric" selected>公制</option>
+  </select>
+  <div id="map" class="map"></div>
+
+  <script>
+    var scaleLineControl = new ol.control.ScaleLine();
+
+    var map = new ol.Map({
+      controls: ol.control.defaults().extend([
+        scaleLineControl
+      ]),
+      layers: [
+        new ol.layer.Tile({
+          source: new ol.source.OSM()
+        })
+      ],
+      target: 'map',
+      view: new ol.View({
+        center: [0, 0],
+        zoom: 2
+      })
+    });
+
+
+    var unitsSelect = document.getElementById('units');
+    
+    function onChange() {
+      scaleLineControl.setUnits(unitsSelect.value);
+    }
+    unitsSelect.addEventListener('change', onChange);
+
+    onChange();
+
+  </script>
+</body>
+
+</html>

@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+  <title>使用地图坐标网
+  </title>
+  <link rel="stylesheet" href="../include/ol.css" type="text/css">
+  <script src="../include/ol.js"></script>
+
+</head>
+<style>
+
+</style>
+
+<body>
+  <div id="map" class="map"></div>
+
+  <script>
+
+    var map = new ol.Map({
+      layers: [
+        new ol.layer.Tile({
+          source: new ol.source.OSM()
+        })
+      ],
+      target: 'map',
+      view: new ol.View({
+        center: ol.proj.fromLonLat([4.8, 47.75]),
+        zoom: 5
+      })
+    });
+
+
+
+    var graticule = new ol.Graticule({
+
+      strokeStyle: new ol.style.Stroke({
+        color: 'rgba(255,120,0,0.9)',
+        width: 2,
+        lineDash: [4]
+      }),
+
+      showLabels: true
+    });
+
+    graticule.setMap(map);
+
+  </script>
+</body>
+
+</html>

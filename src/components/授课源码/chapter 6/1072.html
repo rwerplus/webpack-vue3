@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title></title>
+    <link rel="stylesheet" href="../include/ol.css" type="text/css" />
+    <script src="../include/ol.js"></script>
+  
+  </head>
+  <style></style>
+
+  <body>
+    <div id="map" class="map"></div>
+    <script>
+        var map = new ol.Map({
+        layers: [
+          new ol.layer.Tile({
+            source: new ol.source.TileJSON({
+              url: 'https://api.tiles.mapbox.com/v4/mapbox.geography-class.json?secure&access_token=pk.eyJ1IjoiYWhvY2V2YXIiLCJhIjoiY2pzbmg0Nmk5MGF5NzQzbzRnbDNoeHJrbiJ9.7_-_gL8ur7ZtEiNwRfCy7Q',
+              crossOrigin: 'anonymous'
+            })
+          })
+        ],
+        target: 'map',
+        view: new ol.View({
+          center: [0, 0],
+          zoom: 2
+        })
+      });
+    </script>
+  </body>
+</html>

@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+  <title>导览控件的使用
+  </title>
+  <link rel="stylesheet" href="../include/ol.css" type="text/css">
+  <script src="../include/ol.js"></script>
+
+</head>
+<style>
+
+</style>
+
+<body>
+
+  <div id="map" class="map"></div>
+
+  <script>
+  
+  var map = new ol.Map({
+        controls: ol.control.defaults().extend([
+          new ol.control.ZoomToExtent({
+            extent: [
+              813079.7791264898, 5929220.284081122,
+              848966.9639063801, 5936863.986909639
+            ]
+          })
+        ]),
+        layers: [
+          new ol.layer.Tile({
+            source: new ol.source.OSM()
+          })
+        ],
+        target: 'map',
+        view: new ol.View({
+          center: [0, 0],
+          zoom: 2
+        })
+        });
+  </script>
+</body>
+
+</html>

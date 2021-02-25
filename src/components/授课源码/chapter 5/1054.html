@@ -1,0 +1,90 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+	<title></title>
+	<link rel="stylesheet" href="../include/ol.css" type="text/css" />
+	<script src="../include/ol.js"></script>
+</head>
+<style></style>
+
+<body>
+	<form class="form-inline">
+		<label>几何类型 &nbsp;</label>
+		<select id="type">
+			<option value="Point">点</option>
+			<option value="LineString">线</option>
+			<option value="Polygon">多边形</option>
+			<option value="Circle">圆</option>
+		</select>
+	</form>
+
+	<div id="map" class="map"></div>
+
+	<script>
+		var raster = new ol.layer.Tile({
+			source: new ol.source.OSM()
+		});
+
+		var source = new ol.source.Vector();
+		var vector = new ol.layer.Vector({
+			source: source,
+			style: new ol.style.Style({
+				fill: new ol.style.Fill({
+					color: 'rgba(255, 255, 255, 0.2)'
+				}),
+				stroke: new ol.style.Stroke({
+					color: '#ffcc33',
+					width: 2
+				}),
+				image: new ol.style.Circle({
+					radius: 7,
+					fill: new ol.style.Fill({
+						color: '#ffcc33'
+					})
+				})
+			})
+		});
+
+		var map = new ol.Map({
+			layers: [raster, vector],
+			target: 'map',
+			view: new ol.View({
+				center: [-11000000, 4600000],
+				zoom: 4
+			})
+		});
+
+		var modify = new ol.interaction.Modify({ 
+			source: source,
+			insertVertexCondition: function (){return true}
+			 });
+		map.addInteraction(modify);
+
+		var draw, snap; 
+		var typeSelect = document.getElementById('type');
+
+		function addInteractions() {
+			draw = new ol.interaction.Draw({
+				source: source,
+				type: typeSelect.value
+			});
+			map.addInteraction(draw);
+
+			snap = new ol.interaction.Snap({ source: source });
+			map.addInteraction(snap);
+
+		}
+
+		
+		typeSelect.onchange = function () {
+			map.removeInteraction(draw);
+			map.removeInteraction(snap);
+			addInteractions();
+		};
+
+		addInteractions();
+	</script>
+</body>
+
+</html>

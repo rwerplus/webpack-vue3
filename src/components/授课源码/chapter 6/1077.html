@@ -1,0 +1,56 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title></title>
+    <link rel="stylesheet" href="../include/ol.css" type="text/css" />
+    <script src="../include/ol.js"></script>
+  </head>
+  <style></style>
+
+  <body>
+    <button class="switcher" value="0">一月份</button>
+    <button class="switcher" value="1">一月份 (带海底地形)</button>
+    <button class="switcher" value="2">七月份</button>
+    <button class="switcher" value="3">七月份 (带海底地形)</button>
+    <div id="map" class="map"></div>
+    <div id="info">&nbsp;</div>
+    <script>
+     var urls = [
+        'https://{a-c}.tiles.mapbox.com/v4/mapbox.blue-marble-topo-jan/{z}/{x}/{y}.png?access_token=pk.eyJ1IjoiYWhvY2V2YXIiLCJhIjoiY2pzbmg0Nmk5MGF5NzQzbzRnbDNoeHJrbiJ9.7_-_gL8ur7ZtEiNwRfCy7Q',
+        'https://{a-c}.tiles.mapbox.com/v4/mapbox.blue-marble-topo-bathy-jan/{z}/{x}/{y}.png?access_token=pk.eyJ1IjoiYWhvY2V2YXIiLCJhIjoiY2pzbmg0Nmk5MGF5NzQzbzRnbDNoeHJrbiJ9.7_-_gL8ur7ZtEiNwRfCy7Q',
+        'https://{a-c}.tiles.mapbox.com/v4/mapbox.blue-marble-topo-jul/{z}/{x}/{y}.png?access_token=pk.eyJ1IjoiYWhvY2V2YXIiLCJhIjoiY2pzbmg0Nmk5MGF5NzQzbzRnbDNoeHJrbiJ9.7_-_gL8ur7ZtEiNwRfCy7Q',
+        'https://{a-c}.tiles.mapbox.com/v4/mapbox.blue-marble-topo-bathy-jul/{z}/{x}/{y}.png?access_token=pk.eyJ1IjoiYWhvY2V2YXIiLCJhIjoiY2pzbmg0Nmk5MGF5NzQzbzRnbDNoeHJrbiJ9.7_-_gL8ur7ZtEiNwRfCy7Q'
+      ];
+
+      var source = new ol.source.XYZ();
+
+      var map = new ol.Map({
+        target: 'map',
+        layers: [
+          new ol.layer.Tile({
+            source: source
+          })
+        ],
+        view: new ol.View({
+          center: [0, 0],
+          zoom: 2
+        })
+      });
+
+
+      function updateUrl(index) {
+        source.setUrl(urls[index]);
+      }
+
+      var buttons = document.getElementsByClassName('switcher');
+      for (var i = 0, ii = buttons.length; i < ii; ++i) {
+        var button = buttons[i];
+        button.addEventListener('click', updateUrl.bind(null, Number(button.value)));
+      }
+      updateUrl(0);
+
+
+      
+    </script>
+  </body>
+</html>

@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+  <title></title>
+  <link rel="stylesheet" href="../include/ol.css" type="text/css" />
+  <script src="../include/ol.js"></script>
+</head>
+<style></style>
+
+<body>
+  <div id="map" class="map"></div>
+  <script>
+    var map = new ol.Map({
+      layers: [
+        // new ol.layer.Tile({
+        //   source: new ol.source.Stamen({
+        //     layer: 'watercolor'
+        //   })
+        // }),
+        new ol.layer.Tile({
+          source: new ol.source.Stamen({
+            layer: 'terrain'
+          })
+        })
+      ],
+      target: 'map',
+      view: new ol.View({
+        center: ol.proj.fromLonLat([-122.416667, 37.783333]),
+        zoom: 12
+      })
+    });
+  </script>
+</body>
+
+</html>

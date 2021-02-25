@@ -1,0 +1,138 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+  <title></title>
+  <link rel="stylesheet" href="../include/ol.css" type="text/css" />
+  <script src="../include/ol.js"></script>
+</head>
+<style>
+  .map {
+    background: #E0ECED;
+  }
+
+  .wrapper {
+    position: relative;
+  }
+
+  #progress {
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    height: 100px;
+    background: rgba(0, 60, 136, 0.4);
+    width: 0;
+    transition: width 250ms;
+  }
+</style>
+
+<body>
+
+  <div class="wrapper">
+    <div id="map" class="map"></div>
+    <div id="progress"></div>
+  </div>
+  <script>
+    /**
+     * Renders a progress bar.
+     * @param {Element} el The target element.
+     * @constructor
+     */
+    function Progress(el) {
+      this.el = el;
+      this.loading = 0;
+      this.loaded = 0;
+    }
+
+
+    /**
+     * Increment the count of loading tiles.
+     */
+    Progress.prototype.addLoading = function () {
+      if (this.loading === 0) {
+        this.show();
+      }
+      ++this.loading;
+      this.update();
+    };
+
+
+    /**
+     * Increment the count of loaded tiles.
+     */
+    Progress.prototype.addLoaded = function () {
+      var this_ = this;
+      setTimeout(function () {
+        ++this_.loaded;
+        this_.update();
+      }, 100);
+    };
+
+
+    /**
+     * Update the progress bar.
+     */
+    Progress.prototype.update = function () {
+      var width = (this.loaded / this.loading * 100).toFixed(1) + '%';
+      this.el.style.width = width;
+      if (this.loading === this.loaded) {
+        this.loading = 0;
+        this.loaded = 0;
+        var this_ = this;
+        setTimeout(function () {
+          this_.hide();
+        }, 500);
+      }
+    };
+
+
+    /**
+     * Show the progress bar.
+     */
+    Progress.prototype.show = function () {
+      this.el.style.visibility = 'visible';
+    };
+
+
+    /**
+     * Hide the progress bar.
+     */
+    Progress.prototype.hide = function () {
+      if (this.loading === this.loaded) {
+        this.el.style.visibility = 'hidden';
+        this.el.style.width = 0;
+      }
+    };
+
+    var progress = new Progress(document.getElementById('progress'));
+
+    var source = new ol.source.TileJSON({
+      url: 'https://api.tiles.mapbox.com/v4/mapbox.world-bright.json?secure&access_token=pk.eyJ1IjoiYWhvY2V2YXIiLCJhIjoiY2pzbmg0Nmk5MGF5NzQzbzRnbDNoeHJrbiJ9.7_-_gL8ur7ZtEiNwRfCy7Q',
+      crossOrigin: 'anonymous'
+    });
+
+    source.on('tileloadstart', function () {
+      progress.addLoading();
+    });
+
+    source.on('tileloadend', function () {
+      progress.addLoaded();
+    });
+    source.on('tileloaderror', function () {
+      progress.addLoaded();
+    });
+
+    var map = new ol.Map({
+      layers: [
+        new ol.layer.Tile({ source: source })
+      ],
+      target: 'map',
+      view: new ol.View({
+        center: [0, 0],
+        zoom: 2
+      })
+    });
+  </script>
+</body>
+
+</html>

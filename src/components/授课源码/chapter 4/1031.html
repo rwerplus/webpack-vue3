@@ -1,0 +1,109 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+  <title></title>
+  <link rel="stylesheet" href="../include/ol.css" type="text/css">
+  <script src="../include/ol.js"></script>
+</head>
+<body>
+  <div id="map" class="map"></div>
+
+  <script>
+    var view = new ol.View({
+      center: [0, 0],
+      zoom: 3
+    });
+
+    function createStyle(src, img) {
+      return new ol.style.Style({
+        image: new ol.style.Icon(
+          {
+            anchor: [0.5, 0.96],
+            crossOrigin: "anonymous",
+            // color:[255,0,0],
+            src: src,
+            img: img,
+            imgSize: img ? [img.width, img.height] : undefined
+          }
+        )
+      });
+    }
+
+    // 点要素
+    var iconFeature = new ol.Feature(new ol.geom.Point([0, 0]));
+    // 设置样式
+    iconFeature.set(
+      "style",
+      createStyle(
+        "../data/icon.png",
+        undefined
+      )
+    );
+
+    var map = new ol.Map({
+      layers: [
+        new ol.layer.Tile({
+          source: new ol.source.Stamen({ layer: "watercolor" })
+        }),
+        new ol.layer.Vector({
+          style: function (feature) {
+            return feature.get("style");
+          },
+          source: new ol.source.Vector({ features: [iconFeature] })
+        })
+      ],
+      target: "map",
+      view: view
+    });
+
+    var selectStyle = {};
+
+
+    var select = new ol.interaction.Select({
+      style: function (feature) {
+        var image = feature
+          .get("style")
+          .getImage()
+          .getImage();
+       
+        // 如果选择样式中不存在该样式，则创建样式
+        if (!selectStyle[image.src]) {
+          // 创建canvas元素
+          var canvas = document.createElement("canvas");
+          // 获取绘图环境
+          var context = canvas.getContext("2d");
+          // 画布宽高
+          canvas.width = image.width;
+          canvas.height = image.height;
+          // 绘制图像
+          context.drawImage(image, 0, 0, image.width, image.height);
+          var imageData = context.getImageData(0, 0, canvas.width, canvas.height);
+          var data = imageData.data;
+          // 图片像素反向，创建负片
+          for (var i = 0, ii = data.length; i < ii; i = i + (i % 4 == 2 ? 2 : 1)) {
+            data[i] = 255 - data[i];
+          }
+          context.putImageData(imageData, 0, 0);
+          // 创建样式并添加到选择样式中
+          selectStyle[image.src] = createStyle(undefined, canvas);
+         
+        }
+        return selectStyle[image.src];
+      }
+    });
+
+    map.addInteraction(select);
+
+    // 鼠标移到要素上时改变鼠标样式
+    map.on("pointermove", function (evt) {
+      map.getTargetElement().style.cursor = map.hasFeatureAtPixel(evt.pixel)
+        ? "pointer"
+        : "";
+        
+    });
+
+  </script>
+</body>
+
+</html>

@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+	<title>外部按钮切换地图容器</title>
+	<link rel="stylesheet" href="../include/ol.css" type="text/css">
+	<script src="../include/ol.js"></script>
+
+</head>
+<style>
+	html,
+	body,
+	.map {
+		margin: 0;
+		padding: 0;
+		width: 100%;
+		height: 70%;
+	}
+</style>
+
+<body>
+	<button id="teleport">切换</button>
+	<div id="map1" class="map"></div>
+	<div id="map2" class="map"></div>
+
+
+	<script>
+
+		var map = new ol.Map({
+			layers: [
+				new ol.layer.Tile({
+					source: new ol.source.OSM()
+				})
+			],
+			view: new ol.View({
+				center: [0, 0],
+				zoom: 2
+			})
+		});
+
+		map.setTarget('map1');
+		
+		var teleportButton = document.getElementById('teleport');
+		teleportButton.addEventListener('click', function () {
+			var target = map.getTarget() === 'map1' ? 'map2' : 'map1';
+			map.setTarget(target);
+		}, false);
+
+	</script>
+</body>
+
+</html>

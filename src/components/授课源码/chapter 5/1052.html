@@ -1,0 +1,70 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+	<title></title>
+	<link rel="stylesheet" href="../include/ol.css" type="text/css" />
+	<script src="../include/ol.js"></script>
+</head>
+<style></style>
+
+<body>
+	<form class="form-inline">
+		<label>几何类型 &nbsp;</label>
+		<select id="type">
+			<option value="LineString">线条</option>
+			<option value="Polygon">多边形</option>
+			<option value="Circle">圆</option>
+			<option value="None">无</option>
+		</select>
+	</form>
+
+	<div id="map" class="map"></div>
+
+	<script>
+		var raster = new ol.layer.Tile({
+			source: new ol.source.OSM()
+		});
+
+		var source = new ol.source.Vector({ wrapX: false });
+
+		var vector = new ol.layer.Vector({
+			source: source
+		});
+
+		var map = new ol.Map({
+			layers: [raster, vector],
+			target: 'map',
+			view: new ol.View({
+				center: [-11000000, 4600000],
+				zoom: 4
+			})
+		});
+
+		var typeSelect = document.getElementById('type');
+
+		var draw;
+		function addInteraction() {
+			var value = typeSelect.value;
+			if (value !== 'None') {
+				draw = new ol.interaction.Draw({
+					source: source,
+					type: typeSelect.value,
+					freehand: true
+				});
+				map.addInteraction(draw);
+			}
+		}
+
+
+
+		typeSelect.onchange = function () {
+			map.removeInteraction(draw);
+			addInteraction();
+		};
+
+		addInteraction();
+	</script>
+</body>
+
+</html>
