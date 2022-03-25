@@ -1,4 +1,3 @@
-import type { App } from 'vue';
 import { createPinia } from 'pinia';
 
 /**
@@ -24,7 +23,7 @@ import { createPinia } from 'pinia';
 })
  */
 /**
- * In order to extract properties from the store while keeping its reactivity, you need to use storeToRefs(). It will create refs for every reactive property. 
+ * In order to extract properties from the store while keeping its reactivity, you need to use storeToRefs(). It will create refs for every reactive property.
  * This is useful when you are only using state from the store * but not calling any action. Note you can destructure actions directly from the store as they are bound to the store itself too:
  * import { storeToRefs } from 'pinia'
  *
@@ -37,7 +36,7 @@ import { createPinia } from 'pinia';
  *    const { name, doubleCount } = storeToRefs(store)
  *    // the increment action can be just extracted
  *    const { increment } = store
- *  
+ *
  *    return {
  *      name,
  *      doubleCount
@@ -47,11 +46,6 @@ import { createPinia } from 'pinia';
  *})
  */
 
-
 const store = createPinia();
-
-export function setupStore(app: App<Element>) {
-  app.use(store);
-}
 
 export { store };

@@ -1,18 +1,21 @@
+<script lang="ts" setup>
+import { useUserStore } from '@/store/modules/user'
+
+const store = useUserStore()
+const handleClick = () => {
+  store.setUserInfo({
+    username: 'admin-enal',
+    userId: 12
+  })
+}
+const handleReset = () => {
+  store.$reset();
+}
+</script>
 <template>
   <div class="home">
-    <img alt="Vue logo" src="../assets/logo.png">
-    <HelloWorld msg="Welcome to Your Vue.js + TypeScript App"/>
+    {{ store.userInfo.username }}
+    <button @click="handleClick">changeUserName</button>
+    <button @click="handleReset">resetStore</button>
   </div>
 </template>
-
-<script lang="ts">
-import { defineComponent } from 'vue'
-import HelloWorld from '@/components/HelloWorld.vue' // @ is an alias to /src
-
-export default defineComponent({
-  name: 'HomeView',
-  components: {
-    HelloWorld
-  }
-})
-</script>

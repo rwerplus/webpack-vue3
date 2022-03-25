@@ -21,10 +21,6 @@
 
 - 🍍 [使用 Pinia 的状态管理](https://pinia.esm.dev/)
 
-- 📑 [布局系统](./src/layouts)
-
-- 📲 [PWA](https://github.com/antfu/vite-plugin-pwa)
-
 - 🎨 [UnoCSS](https://github.com/unocss/unocss) - 高性能且极具灵活性的即时原子化 CSS 引擎
 
 - 😃 [各种图标集为你所用](https://github.com/antfu/unocss/tree/main/packages/preset-icons)
@@ -170,10 +166,6 @@ pnpm build
 ```
 
 然后你会看到用于发布的 `dist` 文件夹被生成。
-
-### 部署到 Netlify
-
-前往 [Netlify](https://app.netlify.com/start) 并选择你的仓库, 一路 `OK` 下去，稍等一下后，你的应用将被创建.
 
 ## 相关仓库
 

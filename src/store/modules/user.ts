@@ -3,20 +3,23 @@ import { store } from '@/store';
 
 declare type Nullable<T> = T | null;
 
-interface UserState {
-  userInfo: Nullable<UserInfo>;
-}
-
 export interface UserInfo {
   userId: string | number;
   username: string;
+}
+
+interface UserState {
+  userInfo: Nullable<UserInfo>;
 }
 
 export const useUserStore = defineStore({
   id: 'user-model',
   state: (): UserState => ({
     // user info
-    userInfo: null,
+    userInfo: {
+      userId: '18',
+      username: 'admin',
+    },
   }),
   getters: {
     getUserInfo(): UserInfo {
