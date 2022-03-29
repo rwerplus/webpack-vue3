@@ -6,10 +6,7 @@ import { Icon } from '@iconify/vue';
   <nav>
     <Icon icon="mdi-light:home"  width="16" height="24"/>
     <Icon icon="eva:alert-triangle-fill" color="red" />
-    <Icon icon="eva:alert-triangle-fill" color="#f00" />
-    <Icon icon="eva:alert-triangle-fill" :h-flip="true" />
-    <Icon icon="eva:alert-triangle-fill" :horizontal-flip="true" />
-    <Icon icon="eva:alert-triangle-fill" flip="horizontal" />
+    <Icon icon="et:circle-compass" :h-flip="true" flip="horizontal" :horizontal-flip="true"/>
     <router-view/>
   </nav>
 </template>

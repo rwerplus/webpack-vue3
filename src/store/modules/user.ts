@@ -27,7 +27,7 @@ export const useUserStore = defineStore({
     },
   },
   actions: {
-    setUserInfo(info: UserInfo | null) {
+    setUserInfo(info: UserInfo | null):void {
       this.userInfo = info;
     },
   },
