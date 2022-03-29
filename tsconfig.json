@@ -19,6 +19,7 @@
     "useDefineForClassFields": true,
     "sourceMap": true,
     "baseUrl": ".",
+    "typeRoots": ["./node_modules/@types/", "./types"],
     "types": [
       "webpack-env"
     ],
@@ -35,11 +36,16 @@
     ]
   },
   "include": [
+    "build/**/*.ts",
+    "build/**/*.d.ts",
     "src/**/*.ts",
     "src/**/*.tsx",
     "src/**/*.vue",
     "tests/**/*.ts",
-    "tests/**/*.tsx"
+    "tests/**/*.tsx",
+    "types/**/*.d.ts",
+    "types/**/*.ts",
+    "vue.config.ts",
   ],
   "exclude": [
     "node_modules"

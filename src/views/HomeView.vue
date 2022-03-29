@@ -1,7 +1,10 @@
 <script lang="ts" setup>
 import { useUserStore } from '@/store/modules/user'
+import { useI18n } from 'vue-i18n'
 
 const store = useUserStore()
+const t = useI18n()
+console.log(t)
 const handleClick = () => {
   store.setUserInfo({
     username: 'admin-enal',
