@@ -96,8 +96,6 @@
 
 ###### 官方
 
-<!-- - [vitesse-lite](https://github.com/antfu/vitesse-lite) - Vitesse 的轻量版本 -->
-
 
 ## 现在可以试试!
 
@@ -108,8 +106,8 @@
 如果您更喜欢使用更干净的 git 历史记录手动执行此操作
 
 ```bash
-npx degit rwerplus/enalpro my-vitesse-app
-cd my-vitesse-app
+git clone https://github.com/rwerplus/enalpro
+cd enalpro
 pnpm i # 如果你没装过 pnpm, 可以先运行: npm install -g pnpm
 ```
 
