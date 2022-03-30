@@ -90,11 +90,13 @@
   - `wip` 开发中
 
 
-## 衍生项目
+## 当然，非常推荐大家使用vite
 
 由于这个模板的业务场景非常的局限，下面提供了一个精心策划的列表，列出了社区维护的具有不同偏好和功能集的衍生项目。也可以看看他们。当然也欢迎你 PR 提供自己的项目！
 
-###### 官方
+[**vite**](https://github.com/vitejs/awesome-vite#templates) - Awesome Vite.js
+
+> A curated list of awesome things related to Vite.js
 
 
 ## 现在可以试试!
@@ -106,8 +108,8 @@
 如果您更喜欢使用更干净的 git 历史记录手动执行此操作
 
 ```bash
-git clone https://github.com/rwerplus/enalpro
-cd enalpro
+npx degit rwerplus/enalpro my-app
+cd my-app
 pnpm i # 如果你没装过 pnpm, 可以先运行: npm install -g pnpm
 ```
 
