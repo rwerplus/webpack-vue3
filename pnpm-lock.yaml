@@ -1,9 +1,11 @@
 lockfileVersion: 5.3
 
 specifiers:
+  '@babel/core': ^7.0.0
   '@iconify/vue': ^3.2.0
   '@types/lodash-es': ^4.17.6
   '@types/node': ^17.0.23
+  '@types/webpack-env': ^1.16.3
   '@typescript-eslint/eslint-plugin': ^5.4.0
   '@typescript-eslint/parser': ^5.4.0
   '@vue/cli-plugin-eslint': ~5.0.0
@@ -26,6 +28,7 @@ specifiers:
   vue: ^3.2.13
   vue-i18n: '9'
   vue-router: ^4.0.3
+  webpack: ^5.70.0
 
 dependencies:
   lodash-es: 4.17.21
@@ -35,17 +38,19 @@ dependencies:
   vue-router: 4.0.14_vue@3.2.31
 
 devDependencies:
+  '@babel/core': 7.17.8
   '@iconify/vue': 3.2.0_vue@3.2.31
   '@types/lodash-es': 4.17.6
   '@types/node': 17.0.23
+  '@types/webpack-env': 1.16.3
   '@typescript-eslint/eslint-plugin': 5.16.0_bb4d3d92b2a23488d1db81c628df39f5
   '@typescript-eslint/parser': 5.16.0_eslint@7.32.0+typescript@4.5.5
   '@vue/cli-plugin-eslint': 5.0.4_6084a5b0c7b00dd6f5be6d9e72604c89
   '@vue/cli-plugin-router': 5.0.4_@vue+cli-service@5.0.4
   '@vue/cli-plugin-typescript': 5.0.4_c28833e5cc67062f05adc44811c0596b
   '@vue/cli-plugin-vuex': 5.0.4_@vue+cli-service@5.0.4
-  '@vue/cli-service': 5.0.4
-  '@vue/eslint-config-standard': 6.1.0_b8a7af3c44fa16d0dd4703d5fe724290
+  '@vue/cli-service': 5.0.4_@babel+core@7.17.8
+  '@vue/eslint-config-standard': 6.1.0_85d53b9f2b915518d7af9625b7965076
   '@vue/eslint-config-typescript': 9.1.0_93ca0a5c53554b21070b000f40a709d2
   cross-env: 7.0.3
   eslint: 7.32.0
@@ -55,6 +60,7 @@ devDependencies:
   eslint-plugin-vue: 8.5.0_eslint@7.32.0
   ts-node: 10.7.0_f617194e5939c51b27c7a156f2544bd6
   typescript: 4.5.5
+  webpack: 5.70.0
 
 packages:
 
@@ -122,18 +128,6 @@ packages:
       '@babel/types': 7.17.0
       jsesc: 2.5.2
       source-map: 0.5.7
-    dev: true
-
-  /@babel/helper-compilation-targets/7.17.7:
-    resolution: {integrity: sha512-UFzlz2jjd8kroj0hmCFV5zr+tQPi1dpC2cRsDV/3IEW8bJfCPrPpmcSN6ZS8RqIq4LXcmpipCQFPddyFA5Yc7w==}
-    engines: {node: '>=6.9.0'}
-    peerDependencies:
-      '@babel/core': ^7.0.0
-    dependencies:
-      '@babel/compat-data': 7.17.7
-      '@babel/helper-validator-option': 7.16.7
-      browserslist: 4.20.2
-      semver: 6.3.0
     dev: true
 
   /@babel/helper-compilation-targets/7.17.7_@babel+core@7.17.8:
@@ -797,7 +791,7 @@ packages:
       '@vue/cli-service': ^3.0.0 || ^4.0.0 || ^5.0.0-0
       eslint: '>=7.5.0'
     dependencies:
-      '@vue/cli-service': 5.0.4
+      '@vue/cli-service': 5.0.4_@babel+core@7.17.8
       '@vue/cli-shared-utils': 5.0.4
       eslint: 7.32.0
       eslint-webpack-plugin: 3.1.1_eslint@7.32.0+webpack@5.70.0
@@ -817,7 +811,7 @@ packages:
     peerDependencies:
       '@vue/cli-service': ^3.0.0 || ^4.0.0 || ^5.0.0-0
     dependencies:
-      '@vue/cli-service': 5.0.4
+      '@vue/cli-service': 5.0.4_@babel+core@7.17.8
       '@vue/cli-shared-utils': 5.0.4
     transitivePeerDependencies:
       - encoding
@@ -839,7 +833,7 @@ packages:
     dependencies:
       '@babel/core': 7.17.8
       '@types/webpack-env': 1.16.3
-      '@vue/cli-service': 5.0.4
+      '@vue/cli-service': 5.0.4_@babel+core@7.17.8
       '@vue/cli-shared-utils': 5.0.4
       babel-loader: 8.2.4_fa907c5a4f16ccc493e21649ccc59574
       fork-ts-checker-webpack-plugin: 6.5.0_2e7138ec0cd295d0b0618689813c42dc
@@ -865,10 +859,10 @@ packages:
     peerDependencies:
       '@vue/cli-service': ^3.0.0 || ^4.0.0 || ^5.0.0-0
     dependencies:
-      '@vue/cli-service': 5.0.4
+      '@vue/cli-service': 5.0.4_@babel+core@7.17.8
     dev: true
 
-  /@vue/cli-service/5.0.4:
+  /@vue/cli-service/5.0.4_@babel+core@7.17.8:
     resolution: {integrity: sha512-xRiLNTFYmMCT9edZpyYXHijW5xot3gbZpcWDOXUOhKPHN4qs4XqWALnZlU97JYjZOr3XIr/ZvyciyEfrlUVqSA==}
     engines: {node: ^12.0.0 || >= 14.0.0}
     hasBin: true
@@ -899,7 +893,7 @@ packages:
       webpack-sources:
         optional: true
     dependencies:
-      '@babel/helper-compilation-targets': 7.17.7
+      '@babel/helper-compilation-targets': 7.17.7_@babel+core@7.17.8
       '@soda/friendly-errors-webpack-plugin': 1.8.1_webpack@5.70.0
       '@soda/get-current-script': 1.0.2
       '@types/minimist': 1.2.2
@@ -1045,7 +1039,7 @@ packages:
     resolution: {integrity: sha512-79InfO2xHv+WHIrH1bHXQUiQD/wMls9qBk6WVwGCbdwP7/3zINtvqPNMtmSHXsIKjvUAHc8L0ouOj6ZQQRmcXg==}
     dev: false
 
-  /@vue/eslint-config-standard/6.1.0_b8a7af3c44fa16d0dd4703d5fe724290:
+  /@vue/eslint-config-standard/6.1.0_85d53b9f2b915518d7af9625b7965076:
     resolution: {integrity: sha512-9+hrEyflDzsGdlBDl9jPV5DIYUx1TOU5OSQqRDKCrNumrxRj5HRWKuk+ocXWnha6uoNRtLC24mY7d/MwqvBCNw==}
     peerDependencies:
       '@vue/cli-service': ^3.0.0 || ^4.0.0 || ^5.0.0-0
@@ -1058,11 +1052,11 @@ packages:
       '@vue/cli-service':
         optional: true
     dependencies:
-      '@vue/cli-service': 5.0.4
+      '@vue/cli-service': 5.0.4_@babel+core@7.17.8
       eslint: 7.32.0
       eslint-config-standard: 16.0.3_6a48346ff31498e55146b31bc801dc94
       eslint-import-resolver-node: 0.3.6
-      eslint-import-resolver-webpack: 0.13.2_eslint-plugin-import@2.25.4
+      eslint-import-resolver-webpack: 0.13.2_bac363bc2c2f46a65300020741b6cf5e
       eslint-plugin-import: 2.25.4_eslint@7.32.0
       eslint-plugin-node: 11.1.0_eslint@7.32.0
       eslint-plugin-promise: 5.2.0_eslint@7.32.0
@@ -2483,7 +2477,7 @@ packages:
       resolve: 1.22.0
     dev: true
 
-  /eslint-import-resolver-webpack/0.13.2_eslint-plugin-import@2.25.4:
+  /eslint-import-resolver-webpack/0.13.2_bac363bc2c2f46a65300020741b6cf5e:
     resolution: {integrity: sha512-XodIPyg1OgE2h5BDErz3WJoK7lawxKTJNhgPNafRST6csC/MZC+L5P6kKqsZGRInpbgc02s/WZMrb4uGJzcuRg==}
     engines: {node: '>= 6'}
     peerDependencies:
@@ -2502,6 +2496,7 @@ packages:
       lodash: 4.17.21
       resolve: 1.22.0
       semver: 5.7.1
+      webpack: 5.70.0
     dev: true
 
   /eslint-module-utils/2.7.3:

@@ -1,9 +1,9 @@
 import { getMessage } from '../tool'
 
-const langFiles: any = require.context('./zh_CN', false, /\.ts$/)
+const langFiles: global.RequireContext = require.context('./zh_CN', true, /\.ts$/)
 
 export default {
   message: {
-    ...getMessage(langFiles, 'zh-CN'),
+    ...getMessage(langFiles),
   },
 }

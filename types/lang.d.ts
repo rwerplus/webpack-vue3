@@ -1,4 +1,4 @@
-export type I18nType = 'zh_CN' | 'en_US';
+// types/lang.d.ts
 
 export const LOCALE: { [key: string]: I18nType } = {
   ZH_CN: 'zh_CN',

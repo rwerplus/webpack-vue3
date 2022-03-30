@@ -1,7 +1,7 @@
 import { defineStore } from 'pinia'
 import { I18N_KEY } from '@/enum/cacheEnum'
 import { store } from '@/store'
-import { I18nSetting, I18nState, I18nType } from '@/types/lang'
+import { I18nSetting, I18nState } from '#/lang'
 // useStore could be anything like useUser, useCart
 // the first argument is a unique id of the store across your application
 export const useI18nModule = defineStore({
@@ -13,7 +13,7 @@ export const useI18nModule = defineStore({
     },
   }),
   getters: {
-    getI18n (): I18nType {
+    getI18n (): global.I18nType {
       return this.i18nInfo?.i18n ?? 'zh_CN'
     }
   },
@@ -25,7 +25,7 @@ export const useI18nModule = defineStore({
      */
     SET_I18n (info: Partial<I18nSetting>) {
       this.i18nInfo = { ...this.i18nInfo, ...info }
-      localStorage.set(I18N_KEY, this.i18nInfo)
+      localStorage.setItem(I18N_KEY, JSON.stringify(this.i18nInfo))
     },
   }
 })
