@@ -24,7 +24,7 @@ const handleReset = () => {
   <div class="home">
     <p>{{ t('system.app.logoutTip') }}</p>
     <p>{{ t('app.subTitle500') }}</p>
-    {{ store.userInfo.username }}
+    {{ store.userInfo!.username }}
     <button @click="handleClick">changeUserName</button>
     <button @click="handleReset">resetStore</button>
   </div>

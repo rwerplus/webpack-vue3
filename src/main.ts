@@ -4,7 +4,7 @@ import router from './router'
 import { store } from './store'
 import { I18nInstall } from '@/i18n/I18nInstall'
 
-async function bootstrap () {
+const bootstrap = async () => {
   // Create a vue instance
   const app = createApp(App)
 

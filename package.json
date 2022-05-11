@@ -7,7 +7,8 @@
     "service": "cross-env VUE_CLI_SERVICE_CONFIG_PATH=./vue.config.ts ts-node ./node_modules/@vue/cli-service/bin/vue-cli-service.js",
     "dev": "vue-cli-service serve",
     "build": "vue-cli-service build",
-    "lint": "vue-cli-service lint"
+    "lint": "vue-cli-service lint",
+    "update": "yarn upgrade-interactive"
   },
   "dependencies": {
     "lodash-es": "^4.17.21",
