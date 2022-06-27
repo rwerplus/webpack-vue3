@@ -55,7 +55,7 @@
 ### 编码风格
 
 - 使用 Composition API 地 [`<script setup>` SFC 语法](https://github.com/vuejs/rfcs/pull/227)
-- [ESLint](https://eslint.org/) 配置为 [@antfu/eslint-config](https://github.com/antfu/eslint-config), 单引号, 无分号.
+- [ESLint](https://eslint.org/) 配置为 [@antfu/eslint-config](https://github.com/antfu/eslint-config).
 
 ### 开发工具
 - [TypeScript](https://www.typescriptlang.org/)
@@ -121,7 +121,7 @@ pnpm i # 如果你没装过 pnpm, 可以先运行: npm install -g pnpm
 -  *移除 `.github` 文件夹中包含资助的信息*
 -  *整理 README 并删除路由*
 
-紧接着, 享受吧 :)
+紧接着, 享受吧 ;/
 
 ## 使用
 
