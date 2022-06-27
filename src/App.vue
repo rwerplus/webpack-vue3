@@ -1,9 +1,14 @@
+<script lang="ts" setup>
+import { Icon } from '@iconify/vue';
+</script>
+
 <template>
   <nav>
-    <router-link to="/">Home</router-link> |
-    <router-link to="/about">About</router-link>
+    <Icon icon="mdi-light:home"  width="16" height="24"/>
+    <Icon icon="eva:alert-triangle-fill" color="red" />
+    <Icon icon="et:circle-compass" :h-flip="true" flip="horizontal" :horizontal-flip="true"/>
+    <router-view/>
   </nav>
-  <router-view/>
 </template>
 
 <style>
