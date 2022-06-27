@@ -1,5 +1,5 @@
 <p align='center'>
-稳定地<sup><em>enalpro</em></sup> 创建 Web 应用
+简单的<sup><em>webpack-vue3</em></sup> 创建 Web 应用
 <br> 
 </p>
 
