@@ -105,7 +105,7 @@
 如果您更喜欢使用更干净的 git 历史记录手动执行此操作
 
 ```bash
-npx degit rwerplus/enalpro my-app
+npx degit rwerplus/webpack-vue3 my-app
 cd my-app
 pnpm i # 如果你没装过 pnpm, 可以先运行: npm install -g pnpm
 ```
